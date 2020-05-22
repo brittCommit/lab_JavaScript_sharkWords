@@ -1,3 +1,4 @@
+alert("it worked")
 const ALPHABET = 'abcdefghijklmnopqrstuvwxyz';
 const WORDS = [
   'strawberry', 'orange', 'apple', 'banana', 'pineapple', 'kiwi',
@@ -11,31 +12,40 @@ let numWrong = 0;
 // Loop over the chars in `word` and create divs.
 //
 const createDivsForChars = (word) => {
-  // Replace this with your code
-};
 
+  for (const char of word){
+    $('#word-container').append(`
+    <div class= 'letter-box ${char}'> </div>
+    `);
+  }
+};
 
 // Loop over each letter in `ALPHABET` and generate buttons.
 //
 const generateLetterButtons = () => {
-  // Replace this with your code
+  for (const letter of ALPHABET) {
+    $('#letter-buttons').append(`
+      <button> ${letter} </button>`);
+  }
 };
-
 
 // Set the `disabled` property of `buttonEl` to `true.
 //
 // `buttonEl` is an `HTMLElement` object.
 //
 const disableLetterButton = (buttonEl) => {
-  // Replace this with your code
-};
+  const button = $(buttonEl);
 
+  button.attr('disabled', true);
+};
 
 // Return `true` if `letter` is in the word.
 //
-const isLetterInWord = (letter) => {
-  // Replace this with your code
-};
+// const isLetterInWord = (letter) => {
+
+//   $(`${letter}`)
+  
+// };
 
 
 // Called when `letter` is in word. Update contents of divs with `letter`.
