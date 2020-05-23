@@ -15,7 +15,7 @@ const createDivsForChars = (word) => {
 
   for (const char of word){
     $('#word-container').append(`
-    <div class= 'letter-box ${char}'> </div>
+    <div class='letter-box ${char}'></div>
     `);
   }
 };
@@ -23,9 +23,9 @@ const createDivsForChars = (word) => {
 // Loop over each letter in `ALPHABET` and generate buttons.
 //
 const generateLetterButtons = () => {
-  for (const letter of ALPHABET) {
+  for (const char of ALPHABET) {
     $('#letter-buttons').append(`
-      <button> ${letter} </button>`);
+      <button>${char}</button>`);
   }
 };
 
@@ -34,25 +34,20 @@ const generateLetterButtons = () => {
 // `buttonEl` is an `HTMLElement` object.
 //
 const disableLetterButton = (buttonEl) => {
+  
   const button = $(buttonEl);
-
   button.attr('disabled', true);
 };
 
-// Return `true` if `letter` is in the word.
-//
-// const isLetterInWord = (letter) => {
 
-//   $(`${letter}`)
-  
-// };
-
-
-// Called when `letter` is in word. Update contents of divs with `letter`.
-//
-const handleCorrectGuess = (letter) => {
-  // Replace this with your code
+const isLetterInWord = (letter) => {
+  return $(`div.${letter}`)[0] !== undefined;
 };
+
+
+const handleCorrectGuess = (letter) => {
+  $(`div.${letter}`).html(letter);
+  };
 
 
 // Called when `letter` is not in word.
@@ -61,14 +56,26 @@ const handleCorrectGuess = (letter) => {
 // message. Otherwise, increment `numWrong` and update the shark image.
 //
 const handleWrongGuess = () => {
-  // Replace this with your code
-};
+  numWrong += 1;
 
+  $('#shark-img img').attr('src', `/static/images/guess${numWrong}.png`);
+
+  if (numWrong ===5) {
+    $('button').attr('disabled', true);
+    $('#play-again').css('display', '');
+  }
+}
 
 // Reset game state. Called before restarting the game.
 //
 const resetGame = () => {
-  // Replace this with your code
+  numWrong = 0
+
+  $('#shark-img img').attr('src', `/static/images/guess${numWrong}.png`);
+  $('#play-again').hide(); 
+  // $('#play-again').css('display', 'none'); 
+  $('#word-container').empty();
+  $('#letter-buttons').empty();
 };
 
 
